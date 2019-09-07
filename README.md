@@ -17,3 +17,5 @@ data.py   ---  备用的数据：根据正字规范对藏文做的分类
 process.py  ---  功能函数
 
 main.py  ---  执行程序
+
+data.txt  --- 执行程序 main.py 输出的藏文
