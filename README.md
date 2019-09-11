@@ -12,10 +12,12 @@ python3.*
 
 ### 文件
 
-data.py   ---  备用的数据：根据正字规范对藏文做的分类
+data.py       ---  备用的数据：根据正字规范对藏文做的分类
 
-process.py  ---  功能函数
+process.py    ---  功能函数  
 
-main.py  ---  执行程序
+data_print.py   --- 打印选项 
 
-data.txt  --- 执行程序 main.py 输出的藏文
+main.py       --- 执行程序
+
+data.txt      --- 执行程序 main.py 输出的藏文
