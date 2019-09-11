@@ -12,8 +12,8 @@
 import data
 
 
-# 添加音标
-def add_symbol(words=[]) :
+# 添加  普适音标
+def add_normal_symbol_of_phonetic(words=[]) :
     '''
     添加音标
     :param word：lsit, 待处理字母数组
@@ -25,6 +25,20 @@ def add_symbol(words=[]) :
             word = y + x
             get_words.append(word)   # 压入 数组
     
+    return get_words 
+
+# 添加 somedreed 专用音标
+def add_somedreed_symbol_of_phonetic(words=[]) :
+    '''
+    添加 somedreed 音标
+    :param word：lsit, 待处理字母数组 
+    :return：list, 处理后的字符数组 
+    '''
+    get_words = []  # 接收字符 的数组
+    for symbol in data.symbol_of_somedreed_phonetic  :  # 循环给 word数组 加 音标(x)
+        for word in words :     # 循环给 word数组元素(y)  加音标（x）
+            word = word + symbol
+            get_words.append(word)   # 压入 数组
     return get_words 
 
 
@@ -93,9 +107,9 @@ def add_special_word(words=[]) :
     get_words = [] # 接收字符
 
     for word in words :  # 循环给 words 的元素(word) 加下加字
-        if word in data.under_ha: 
-            a =  word + 'ྷ'  # 给 word 加 对应的下加字
-            get_words.append(a)    # 压入 数组
+        # if word in data.under_ha: 
+        #     a =  word + 'ྷ'  # 给 word 加 对应的下加字
+        #     get_words.append(a)    # 压入 数组
         if word in data.under_ny: 
             a =  word + 'ྙ'  # 给 word 加 对应的下加字
             get_words.append(a)    # 压入 数组
@@ -181,21 +195,36 @@ def add_top_under_word() :
     return  get_words
 
 
- # 添加镜像字 
-def add_mirror_word(words=[]) :
+# 添加  后加字
+def add_behind_word(words =[]) :
     '''
-    添加特殊下加字
+    添加后加字
     :param word：lsit, 待处理字母数组
     :return：list, 处理后的字符数组
     '''
     get_words = [] # 接收字符
     
-    for word in words :  # 循环给 words 的元素(word) 翻转
-        if word in data.mirror_key :
-            get_words.append(data.mirror_value[word])
+    for behind in data.add_behind :
+        for word in words :
+            ok_word = word + behind
+            get_words.append(ok_word)
+    return get_words  
+
+
+#  somedreed字 专用下加字
+def add_under_word_for_somedreed_word(words =[]) :
+    '''
+    somedreed字 专用下加字
+    :param word：lsit, 传入 somedreed字
+    :return：list, 处理后的字符数组
+    '''
+    get_words = [] # 接收字符
     
-    return  get_words   
-    
+    for key in data.mirror_key :
+        for word in words :
+            ok_word = word + data.mirror_value_as_under_of_somedreed_word[key]
+            get_words.append(ok_word)
+    return get_words
 
 
 
@@ -203,16 +232,3 @@ def add_mirror_word(words=[]) :
 
 
 # 测试
-# print('1', add_symbol(data.words))     # ok
-# print('2', add_top_word(data.words))   # ok
-# print('3', add_under_word(data.words))  # ok
-# print('4', add_top_under_word())        #ok
-# print('5', add_mirror_word(data.words))
-
-
-
-# print(add_top_word('ག'))
-# # b = 'ཕ' + "\u0f92"
-# b = 'ཕ' + "ྭ"
-# print(add_under_word('ག'))
-# print(add_top_under_word("ག"))
