@@ -20,4 +20,4 @@ data_print.py   --- 打印选项
 
 main.py       --- 执行程序
 
-data.txt      --- 执行程序 main.py 输出的藏文
+data.txt      --- 当前程序输出的结果
