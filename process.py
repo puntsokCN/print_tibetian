@@ -157,7 +157,7 @@ def add_top_under_word() :
     :return：list, 处理后的字符数组
     '''
     
-    # 给各个 上加字 各准备一个用于 map 的函数
+    # 给各个 上加字 各准备一个作用于 map 的函数
     def ha(x) :
         return 'ཧ' + x
     def ra(x) :
@@ -232,3 +232,16 @@ def add_under_word_for_somedreed_word(words =[]) :
 
 
 # 测试
+# print('1', add_symbol(data.words))     # ok
+# print('2', add_top_word(data.words))   # ok
+# print('3', add_under_word(data.words))  # ok
+# print('4', add_top_under_word())        #ok
+# print('5', add_mirror_word(data.words))
+
+
+
+# print(add_top_word('ག'))
+# # b = 'ཕ' + "\u0f92"
+# b = 'ཕ' + "ྭ"
+# print(add_under_word('ག'))
+# print(add_top_under_word("ག"))
