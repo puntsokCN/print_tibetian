@@ -149,14 +149,15 @@ def find_top_under_word(words=[]) :
     # 5 建立 同时存在上下可加字根(exist_top_under_words) 与 已加 下加字(under_words )的映射关系
     #  存储 字典数据在 data.sub_under_word
 
-# 上下同时 加字
-def add_top_under_word() :
+
+# 上下同时 加字   此方法未考虑正字规范而是罗列出来了上下同时加字的所有组合
+def add_top_under_word_all() :
     '''
-    上下同时 加字
+    所有上下同时 加字的组合方式
     :param ： 无
     :return：list, 处理后的字符数组
     '''
-    
+
     # 给各个 上加字 各准备一个作用于 map 的函数
     def ha(x) :
         return 'ཧ' + x
@@ -166,32 +167,94 @@ def add_top_under_word() :
         return 'ལ' + x
     def sa(x) :
         return 'ས' + x
-    
+
     get_words = []    # 用于接收结果的数组
-    
-    
+
+
     for word in data.exist_top_under_words :  # 循环给 words 的元素(word) 加上加字
         # 分别判断 语法里是否有对应的上加字
         # 处理 ha
         if word in data.top_ha :
             r = map(ha, data.sub_under_word[word])
             get_words = get_words + list(r)    #   合并数组
-   
+
         # 处理 ra
         if word in data.top_ra :
             r = map(ra, data.sub_under_word[word])
             get_words = get_words + list(r)    #   合并数组
-        
+
          # 处理 la
         if word in data.top_la :
             r = map(la, data.sub_under_word[word])
             get_words = get_words + list(r)    #   合并数组
-        
+
         # 处理 sa
         if word in data.top_sa :
             r = map(sa, data.sub_under_word[word])
             get_words = get_words + list(r)    #   合并数组
-    
+
+    return  get_words
+
+#  正字规范下的上下加字
+def add_top_under_word() :
+    '''
+    正字规范下的上下同时 加字
+    :param ： 无
+    :return：list, 处理后的字符数组
+    '''
+
+    # 给各个 上加字 各准备一个作用于 map 的函数
+    def ra(x) :
+        return 'ར' + x
+    def sa(x) :
+        return 'ས' + x
+
+    # 用于给 word 添加  下加字  ྱ
+    def make_sub_ya(word) :
+    # 由于有两种情况需要函数外 压入数组
+        if word in data.under_ya:
+            a =  data.sub_word[word] + 'ྱ'  #  给 word 加 对应的下加字
+
+        return a
+
+    # 用于给word加下加字   ྲ
+    def make_sub_ra(word) :
+    # 只需调用无需 压入数组
+        if word in data.under_ra:
+            a =  data.sub_word[word] + 'ྲ'  #  给 word 加 对应的下加字
+            sub_ra.append(a)    # 压入 数组
+
+
+    get_words = []    # 用于接收结果的数组
+    sub_ya_1 = []
+    sub_ya_2 = []
+    sub_ra = []
+
+    for word in data.words :
+        ###
+        # 处理 上加字 ra
+        if word in data.top_ra and word in data.under_ya  :
+            sub_ya_1.append(make_sub_ya(word))
+            r = map(ra, sub_ya_1)
+            get_words = get_words + list(r)  #   合并数组
+
+    for word in data.words :
+        # 处理 上加字 sa (1)
+        if word in data.top_sa and word in data.under_ya  :
+            sub_ya_2.append(make_sub_ya(word))
+            r = map(sa, sub_ya_2)
+            get_words = get_words + list(r)
+
+    for word in data.words :
+        # 处理 上加字 sa(2)
+        if word in data.top_sa and word in data.under_ra  :
+            make_sub_ra(word)
+            r = map(sa, sub_ra)
+            get_words = get_words + list(r)
+
+
+
+    get_words = list(set(get_words))
     return  get_words
 
 
@@ -245,3 +308,10 @@ def add_under_word_for_somedreed_word(words =[]) :
 # b = 'ཕ' + "ྭ"
 # print(add_under_word('ག'))
 # print(add_top_under_word("ག"))
+print(add_top_under_word())
+
+
+
+# 入口函数
+if __name__ == '__main__':
+    pass

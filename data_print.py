@@ -56,3 +56,9 @@ l_20 = data.add_behind
 
 ##  21.符号合计
 symbols = l_10 + l_11 + l_12 + l_13 + l_14 + l_15 + l_16 + l_17 + l_18 + l_19 + l_20
+
+
+
+# 入口函数
+if __name__ == '__main__':
+    pass

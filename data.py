@@ -90,3 +90,8 @@ symbol_of_sound = ['࿀',  '࿁',  '࿂',  '࿃']
 
 # 经文常见符号 单独成立
 symbol_of_buddhist_scriptures = ['࿄',  '࿅',  '࿆',  '࿇',  '࿈',  '࿉',  '࿋',  '࿋',  '࿌']
+
+
+# 入口函数
+if __name__ == '__main__':
+    pass

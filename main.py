@@ -17,7 +17,7 @@ all = data_print.words + data_print.symbols
 def main() :
     
     # 所有存在字符
-    with open(r"D:\平措\ex\programe\print_tibetian\正字规范下的藏文\data.txt", mode="w", encoding="UTF-16") as f:
+    with open("data.txt", mode="w", encoding="UTF-16") as f:
     # with open("data.txt", mode="w", encoding="UTF-16") as f:
         index = 1
         for line in all :
